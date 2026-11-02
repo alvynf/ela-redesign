@@ -52,4 +52,147 @@
           <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
           <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
           <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l
+          <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+        </svg>
+        Google Student UTDI
+      </button>
+
+      <div class="auth-footer">
+        <p>Kendala akun? <a href="#">Bantuan Akses</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PAGE 2: DASHBOARD ==================== -->
+  <div id="app-page" class="app-wrapper hidden">
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <div class="brand">
+        <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <span class="brand-text">ELA <span>UTDI</span></span>
+      </div>
+      <div class="user-profile">
+        <div class="user-info">
+          <span id="display-user-name" class="user-name">Alpiyanto</span>
+          <span class="user-role">Informatika '26</span>
+        </div>
+        <div class="avatar"><i class="fa-solid fa-user"></i></div>
+        <button class="btn-logout" title="Keluar" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i></button>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="container">
+      <!-- Hero Banner -->
+      <section class="hero-banner">
+        <div class="hero-text">
+          <h2>Semangat Belajar, <span id="hero-user-name">Alpi</span>! 🚀</h2>
+          <p>Kamu punya 1 jadwal presensi aktif & 1 tugas mendekati deadline hari ini.</p>
+        </div>
+      </section>
+
+      <!-- Section 1: One-Click Attendance -->
+      <section class="card attendance-card">
+        <div class="card-header">
+          <span class="badge badge-live"><i class="fa-solid fa-circle"></i> KULIAH AKTIF SEKARANG</span>
+        </div>
+        <div class="course-info">
+          <h3>Jaringan Komputer IF-1</h3>
+          <p><i class="fa-regular fa-clock"></i> 07:45 - 08:30 WIB | Ruang B.21</p>
+        </div>
+        
+        <div id="attendance-box">
+          <div class="input-group">
+            <input type="text" id="passcode" placeholder="Masukkan 4-digit passcode..." maxlength="4">
+            <button id="btn-submit-presensi" onclick="submitPresensi()">Presensi <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+          <p class="hint-text"><i class="fa-solid fa-circle-info"></i> Minta passcode presensi kepada dosen pengampu</p>
+        </div>
+
+        <div id="success-box" class="success-box hidden">
+          <i class="fa-solid fa-circle-check check-icon"></i>
+          <div>
+            <strong>Presensi Berhasil Terekam!</strong>
+            <p>Status: <span class="status-present">Hadir</span> (Dicatat pukul 07:50 WIB)</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Tasks -->
+      <section class="section-header">
+        <h4><i class="fa-solid fa-fire"></i> Tugas & Practical Test</h4>
+        <a href="#" class="see-all">Lihat Semua</a>
+      </section>
+      
+      <div class="card task-card">
+        <div class="task-icon"><i class="fa-solid fa-code"></i></div>
+        <div class="task-details">
+          <h5>Laporan Praktikum Algo</h5>
+          <p>Praktikum Algoritma dan Pemrograman</p>
+          <span class="deadline urgent"><i class="fa-regular fa-clock"></i> Sisa 2 Jam (Tenggat 23:59 WIB)</span>
+        </div>
+        <button class="btn-action-sm">Submit</button>
+      </div>
+
+      <!-- Section 3: Active Courses -->
+      <section class="section-header">
+        <h4><i class="fa-solid fa-book-bookmark"></i> Kelas Semester Ini</h4>
+      </section>
+
+      <div class="course-grid">
+        <div class="card course-item">
+          <div class="course-header-tag tag-blue"></div>
+          <div class="course-body">
+            <span class="code">SIF25101T</span>
+            <h5>Jaringan Komputer IF-1</h5>
+            <p class="lecturer"><i class="fa-regular fa-user"></i> Wagito, S.Kom., M.Cs.</p>
+            <div class="progress-info">
+              <span>Progres Materi</span>
+              <strong>85%</strong>
+            </div>
+            <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+          </div>
+        </div>
+
+        <div class="card course-item">
+          <div class="course-header-tag tag-purple"></div>
+          <div class="course-body">
+            <span class="code">INF25102T</span>
+            <h5>Pengantar Teknologi Informasi</h5>
+            <p class="lecturer"><i class="fa-regular fa-user"></i> Edi Iskandar, M.Kom.</p>
+            <div class="progress-info">
+              <span>Progres Materi</span>
+              <strong>70%</strong>
+            </div>
+            <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+          </div>
+        </div>
+
+        <div class="card course-item">
+          <div class="course-header-tag tag-green"></div>
+          <div class="course-body">
+            <span class="code">INF25103T</span>
+            <h5>Algoritma & Pemrograman</h5>
+            <p class="lecturer"><i class="fa-regular fa-user"></i> Femi Dwi Astuti, M.Cs.</p>
+            <div class="progress-info">
+              <span>Progres Materi</span>
+              <strong>90%</strong>
+            </div>
+            <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+      <a href="#" class="nav-item active"><i class="fa-solid fa-house"></i><span>Beranda</span></a>
+      <a href="#" class="nav-item"><i class="fa-solid fa-calendar-days"></i><span>Jadwal</span></a>
+      <a href="#" class="nav-item"><i class="fa-solid fa-list-check"></i><span>Tugas</span></a>
+      <a href="#" class="nav-item"><i class="fa-solid fa-user"></i><span>Profil</span></a>
+    </nav>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
