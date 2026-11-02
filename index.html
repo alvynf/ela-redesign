@@ -3,17 +3,166 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ELA UTDI - Portal Learning Modern</title>
-  <link rel="stylesheet" href="style.css">
-  <!-- Font Jakarta Sans & FontAwesome -->
+  <title>ELA UTDI - Learning Portal Modern</title>
+  <!-- Google Fonts & FontAwesome -->
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    /* ==================== VARIABLE & THEMING ==================== */
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --accent: #f59e0b;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --border: #e2e8f0;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 10px 25px -5px rgba(37, 99, 235, 0.12);
+    }
+
+    /* Dark Mode Theme */
+    body.dark-mode {
+      --bg-color: #0f172a;
+      --card-bg: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --primary-light: #1e3a8a;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.25s, color 0.25s, border-color 0.25s; }
+    body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; }
+    .hidden { display: none !important; }
+
+    /* ==================== LOGIN PAGE ==================== */
+    .auth-wrapper { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+    .auth-card { background: var(--card-bg); width: 100%; max-width: 380px; padding: 32px 24px; border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: var(--shadow-lg); position: relative; }
+    .brand-logo { width: 52px; height: 52px; background: var(--primary); color: white; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin: 0 auto 14px; box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25); }
+    .auth-header { text-align: center; margin-bottom: 24px; }
+    .auth-header h2 { font-size: 1.35rem; font-weight: 800; }
+    .auth-header p { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; }
+
+    .form-group { margin-bottom: 16px; }
+    .form-group label { display: block; font-size: 0.78rem; font-weight: 700; margin-bottom: 6px; }
+    .input-with-icon { position: relative; display: flex; align-items: center; }
+    .input-with-icon i { position: absolute; left: 14px; color: var(--text-muted); font-size: 0.9rem; }
+    .input-with-icon input { width: 100%; padding: 11px 14px 11px 38px; border: 1.5px solid var(--border); border-radius: var(--radius-md); font-size: 0.88rem; outline: none; background: var(--card-bg); color: var(--text-main); }
+    .input-with-icon input:focus { border-color: var(--primary); }
+
+    .btn-primary-block { width: 100%; background-color: var(--primary); color: white; border: none; padding: 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.92rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); }
+    .btn-primary-block:hover { background-color: var(--primary-hover); }
+
+    .auth-divider { display: flex; align-items: center; text-align: center; margin: 18px 0; color: var(--text-muted); font-size: 0.75rem; }
+    .auth-divider::before, .auth-divider::after { content: ''; flex: 1; border-bottom: 1px solid var(--border); }
+    .auth-divider span { padding: 0 10px; }
+
+    .btn-sso { width: 100%; background: var(--card-bg); border: 1.5px solid var(--border); padding: 10px; border-radius: var(--radius-md); font-weight: 600; font-size: 0.85rem; color: var(--text-main); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .google-svg { width: 18px; height: 18px; }
+
+    /* Theme Toggle Button (Header & Auth) */
+    .btn-theme-toggle { background: var(--primary-light); border: 1px solid var(--border); color: var(--text-main); padding: 6px 10px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 600; }
+
+    /* ==================== MAIN DASHBOARD ==================== */
+    .app-wrapper { padding-bottom: 85px; }
+    .top-bar { background-color: var(--card-bg); display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-icon { width: 32px; height: 32px; background: var(--primary); color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+    .brand-text { font-weight: 800; font-size: 1.05rem; }
+    .brand-text span { color: var(--primary); }
+
+    .user-profile { display: flex; align-items: center; gap: 10px; }
+    .user-info { text-align: right; display: flex; flex-direction: column; }
+    .user-name { font-size: 0.82rem; font-weight: 700; }
+    .user-role { font-size: 0.68rem; color: var(--text-muted); }
+    .avatar { width: 34px; height: 34px; border-radius: 50%; background-color: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; border: 1px solid var(--border); }
+
+    .container { max-width: 480px; margin: 0 auto; padding: 16px; }
+
+    /* Hero Banner */
+    .hero-banner { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: white; padding: 18px 20px; border-radius: var(--radius-lg); margin-bottom: 18px; box-shadow: 0 6px 18px rgba(37, 99, 235, 0.2); }
+    .hero-text h2 { font-size: 1.2rem; font-weight: 800; }
+    .hero-text p { font-size: 0.78rem; opacity: 0.9; margin-top: 4px; line-height: 1.4; }
+
+    /* Cards */
+    .card { background-color: var(--card-bg); border-radius: var(--radius-lg); padding: 16px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); margin-bottom: 14px; }
+    .attendance-card { border-left: 5px solid var(--primary); box-shadow: var(--shadow-md); }
+    .badge-live { background-color: #fef2f2; color: var(--danger); font-size: 0.65rem; font-weight: 800; padding: 4px 8px; border-radius: 20px; display: inline-flex; align-items: center; gap: 5px; }
+    .badge-live i { font-size: 0.4rem; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
+
+    .course-info h3 { font-size: 1.05rem; font-weight: 700; margin: 8px 0 2px; }
+    .course-info p { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px; }
+
+    .input-group { display: flex; gap: 8px; }
+    .input-group input { flex: 1; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: var(--radius-md); outline: none; font-size: 0.85rem; font-weight: 600; background: var(--card-bg); color: var(--text-main); }
+    .input-group button { background-color: var(--primary); color: white; border: none; padding: 10px 16px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+
+    .success-box { background-color: #ecfdf5; border: 1px solid #a7f3d0; padding: 12px; border-radius: var(--radius-md); display: flex; align-items: center; gap: 10px; }
+    .check-icon { font-size: 1.5rem; color: var(--success); }
+    .success-box strong { font-size: 0.85rem; color: #065f46; }
+    .success-box p { font-size: 0.75rem; color: #047857; margin-top: 2px; }
+
+    .section-header { display: flex; justify-content: space-between; align-items: center; margin: 18px 0 10px; }
+    .section-header h4 { font-size: 0.9rem; font-weight: 800; display: flex; align-items: center; gap: 6px; }
+    .section-header h4 i { color: var(--accent); }
+
+    .task-card { display: flex; align-items: center; gap: 12px; }
+    .task-icon { width: 40px; height: 40px; background-color: #fff7ed; color: #ea580c; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .task-details { flex: 1; }
+    .task-details h5 { font-size: 0.88rem; font-weight: 700; }
+    .task-details p { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+    .deadline.urgent { font-size: 0.7rem; color: var(--danger); font-weight: 700; display: inline-block; margin-top: 3px; }
+
+    /* Course Cards */
+    .course-grid { display: flex; flex-direction: column; gap: 10px; }
+    .course-item { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+    .course-header-tag { height: 5px; width: 100%; }
+    .tag-blue { background-color: #3b82f6; }
+    .tag-purple { background-color: #a855f7; }
+    .tag-green { background-color: #10b981; }
+    .course-body { padding: 12px 16px; }
+    .course-body .code { font-size: 0.62rem; font-weight: 800; color: var(--text-muted); }
+    .course-body h5 { font-size: 0.9rem; font-weight: 700; margin: 3px 0 2px; }
+    .course-body .lecturer { font-size: 0.72rem; color: var(--text-muted); }
+    .progress-info { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-muted); margin-top: 10px; }
+    .progress-bar { height: 5px; background-color: var(--border); border-radius: 3px; margin-top: 5px; overflow: hidden; }
+    .progress { height: 100%; background-color: var(--primary); }
+
+    /* Bottom Navigation Bar */
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background-color: var(--card-bg); display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid var(--border); box-shadow: 0 -4px 12px rgba(0,0,0,0.03); z-index: 99; }
+    .nav-item { text-decoration: none; color: var(--text-muted); display: flex; flex-direction: column; align-items: center; font-size: 0.68rem; gap: 3px; cursor: pointer; }
+    .nav-item i { font-size: 1.15rem; }
+    .nav-item.active { color: var(--primary); font-weight: 700; }
+
+    /* Profile Page Specifics */
+    .profile-card-header { text-align: center; padding: 20px 10px; }
+    .profile-avatar-lg { width: 72px; height: 72px; border-radius: 50%; background: var(--primary-light); color: var(--primary); font-size: 2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; border: 2px solid var(--primary); }
+    .profile-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+    .profile-item span { color: var(--text-muted); }
+    .profile-item strong { color: var(--text-main); }
+  </style>
 </head>
 <body>
 
-  <!-- ==================== PAGE 1: LOGIN ==================== -->
+  <!-- ==================== PAGE 1: LOGIN PAGE ==================== -->
   <div id="login-page" class="auth-wrapper">
     <div class="auth-card">
+      <div style="position: absolute; top: 16px; right: 16px;">
+        <button class="btn-theme-toggle" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i> Theme</button>
+      </div>
+
       <div class="auth-header">
         <div class="brand-logo">
           <i class="fa-solid fa-graduation-cap"></i>
@@ -47,7 +196,6 @@
       <div class="auth-divider"><span>atau masuk dengan</span></div>
 
       <button type="button" class="btn-sso" onclick="handleSSOLogin()">
-        <!-- Inline SVG Google Icon (Aman & Ringan) -->
         <svg class="google-svg" viewBox="0 0 24 24">
           <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
           <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -56,143 +204,206 @@
         </svg>
         Google Student UTDI
       </button>
-
-      <div class="auth-footer">
-        <p>Kendala akun? <a href="#">Bantuan Akses</a></p>
-      </div>
     </div>
   </div>
 
-  <!-- ==================== PAGE 2: DASHBOARD ==================== -->
+  <!-- ==================== PAGE 2: MAIN DASHBOARD APP ==================== -->
   <div id="app-page" class="app-wrapper hidden">
-    <!-- Top Bar -->
+    
+    <!-- Top Bar Header -->
     <header class="top-bar">
       <div class="brand">
         <div class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></div>
         <span class="brand-text">ELA <span>UTDI</span></span>
       </div>
       <div class="user-profile">
-        <div class="user-info">
-          <span id="display-user-name" class="user-name">Alpiyanto</span>
-          <span class="user-role">Informatika '26</span>
-        </div>
+        <button class="btn-theme-toggle" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i> Mode</button>
         <div class="avatar"><i class="fa-solid fa-user"></i></div>
-        <button class="btn-logout" title="Keluar" onclick="handleLogout()"><i class="fa-solid fa-right-from-bracket"></i></button>
+        <button class="btn-logout" title="Keluar" onclick="handleLogout()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:1.1rem;"><i class="fa-solid fa-right-from-bracket"></i></button>
       </div>
     </header>
 
-    <!-- Main Content Container -->
+    <!-- Main Container -->
     <main class="container">
-      <!-- Hero Banner -->
-      <section class="hero-banner">
-        <div class="hero-text">
-          <h2>Semangat Belajar, <span id="hero-user-name">Alpi</span>! 🚀</h2>
-          <p>Kamu punya 1 jadwal presensi aktif & 1 tugas mendekati deadline hari ini.</p>
-        </div>
-      </section>
 
-      <!-- Section 1: One-Click Attendance -->
-      <section class="card attendance-card">
-        <div class="card-header">
-          <span class="badge badge-live"><i class="fa-solid fa-circle"></i> KULIAH AKTIF SEKARANG</span>
-        </div>
-        <div class="course-info">
-          <h3>Jaringan Komputer IF-1</h3>
-          <p><i class="fa-regular fa-clock"></i> 07:45 - 08:30 WIB | Ruang B.21</p>
-        </div>
+      <!-- TAB 1: HOME / BERANDA -->
+      <div id="tab-home" class="tab-content">
+        <section class="hero-banner">
+          <div class="hero-text">
+            <h2>Semangat Belajar, <span id="hero-user-name">Alpi</span>! 🚀</h2>
+            <p>Kamu punya 1 jadwal presensi aktif hari ini.</p>
+          </div>
+        </section>
+
+        <!-- One-Click Attendance -->
+        <section class="card attendance-card">
+          <div class="card-header">
+            <span class="badge badge-live"><i class="fa-solid fa-circle"></i> KULIAH AKTIF SEKARANG</span>
+          </div>
+          <div class="course-info">
+            <h3>Jaringan Komputer IF-1</h3>
+            <p><i class="fa-regular fa-clock"></i> 07:45 - 08:30 WIB | Ruang B.21</p>
+          </div>
+          
+          <div id="attendance-box">
+            <div class="input-group">
+              <input type="text" id="passcode" placeholder="Masukkan 4-digit passcode..." maxlength="4">
+              <button onclick="submitPresensi()">Presensi <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            <p style="font-size:0.7rem; color:var(--text-muted); margin-top:6px;"><i class="fa-solid fa-circle-info"></i> Minta passcode presensi kepada dosen pengampu</p>
+          </div>
+
+          <div id="success-box" class="success-box hidden">
+            <i class="fa-solid fa-circle-check check-icon"></i>
+            <div>
+              <strong>Presensi Berhasil Terekam!</strong>
+              <p>Status: <span style="color:var(--success); font-weight:800;">Hadir</span> (07:50 WIB)</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Tasks -->
+        <section class="section-header">
+          <h4><i class="fa-solid fa-fire"></i> Tugas Terdekat</h4>
+        </section>
         
-        <div id="attendance-box">
-          <div class="input-group">
-            <input type="text" id="passcode" placeholder="Masukkan 4-digit passcode..." maxlength="4">
-            <button id="btn-submit-presensi" onclick="submitPresensi()">Presensi <i class="fa-solid fa-arrow-right"></i></button>
-          </div>
-          <p class="hint-text"><i class="fa-solid fa-circle-info"></i> Minta passcode presensi kepada dosen pengampu</p>
-        </div>
-
-        <div id="success-box" class="success-box hidden">
-          <i class="fa-solid fa-circle-check check-icon"></i>
-          <div>
-            <strong>Presensi Berhasil Terekam!</strong>
-            <p>Status: <span class="status-present">Hadir</span> (Dicatat pukul 07:50 WIB)</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 2: Tasks -->
-      <section class="section-header">
-        <h4><i class="fa-solid fa-fire"></i> Tugas & Practical Test</h4>
-        <a href="#" class="see-all">Lihat Semua</a>
-      </section>
-      
-      <div class="card task-card">
-        <div class="task-icon"><i class="fa-solid fa-code"></i></div>
-        <div class="task-details">
-          <h5>Laporan Praktikum Algo</h5>
-          <p>Praktikum Algoritma dan Pemrograman</p>
-          <span class="deadline urgent"><i class="fa-regular fa-clock"></i> Sisa 2 Jam (Tenggat 23:59 WIB)</span>
-        </div>
-        <button class="btn-action-sm">Submit</button>
-      </div>
-
-      <!-- Section 3: Active Courses -->
-      <section class="section-header">
-        <h4><i class="fa-solid fa-book-bookmark"></i> Kelas Semester Ini</h4>
-      </section>
-
-      <div class="course-grid">
-        <div class="card course-item">
-          <div class="course-header-tag tag-blue"></div>
-          <div class="course-body">
-            <span class="code">SIF25101T</span>
-            <h5>Jaringan Komputer IF-1</h5>
-            <p class="lecturer"><i class="fa-regular fa-user"></i> Wagito, S.Kom., M.Cs.</p>
-            <div class="progress-info">
-              <span>Progres Materi</span>
-              <strong>85%</strong>
-            </div>
-            <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
-          </div>
-        </div>
-
-        <div class="card course-item">
-          <div class="course-header-tag tag-purple"></div>
-          <div class="course-body">
-            <span class="code">INF25102T</span>
-            <h5>Pengantar Teknologi Informasi</h5>
-            <p class="lecturer"><i class="fa-regular fa-user"></i> Edi Iskandar, M.Kom.</p>
-            <div class="progress-info">
-              <span>Progres Materi</span>
-              <strong>70%</strong>
-            </div>
-            <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
-          </div>
-        </div>
-
-        <div class="card course-item">
-          <div class="course-header-tag tag-green"></div>
-          <div class="course-body">
-            <span class="code">INF25103T</span>
-            <h5>Algoritma & Pemrograman</h5>
-            <p class="lecturer"><i class="fa-regular fa-user"></i> Femi Dwi Astuti, M.Cs.</p>
-            <div class="progress-info">
-              <span>Progres Materi</span>
-              <strong>90%</strong>
-            </div>
-            <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+        <div class="card task-card">
+          <div class="task-icon"><i class="fa-solid fa-code"></i></div>
+          <div class="task-details">
+            <h5>Laporan Praktikum Algo</h5>
+            <p>Praktikum Algoritma dan Pemrograman</p>
+            <span class="deadline urgent"><i class="fa-regular fa-clock"></i> Sisa 2 Jam</span>
           </div>
         </div>
       </div>
+
+      <!-- TAB 2: CLASSES / KELAS SAYA -->
+      <div id="tab-classes" class="tab-content hidden">
+        <section class="section-header">
+          <h4><i class="fa-solid fa-book-bookmark"></i> Kelas Semester Ini</h4>
+        </section>
+
+        <div class="course-grid">
+          <div class="card course-item">
+            <div class="course-header-tag tag-blue"></div>
+            <div class="course-body">
+              <span class="code">SIF25101T</span>
+              <h5>Jaringan Komputer IF-1</h5>
+              <p class="lecturer"><i class="fa-regular fa-user"></i> Wagito, S.Kom., M.Cs.</p>
+              <div class="progress-info"><span>Progres Materi</span><strong>85%</strong></div>
+              <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+            </div>
+          </div>
+
+          <div class="card course-item">
+            <div class="course-header-tag tag-purple"></div>
+            <div class="course-body">
+              <span class="code">INF25102T</span>
+              <h5>Pengantar Teknologi Informasi</h5>
+              <p class="lecturer"><i class="fa-regular fa-user"></i> Edi Iskandar, M.Kom.</p>
+              <div class="progress-info"><span>Progres Materi</span><strong>70%</strong></div>
+              <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+            </div>
+          </div>
+
+          <div class="card course-item">
+            <div class="course-header-tag tag-green"></div>
+            <div class="course-body">
+              <span class="code">INF25103T</span>
+              <h5>Algoritma & Pemrograman</h5>
+              <p class="lecturer"><i class="fa-regular fa-user"></i> Femi Dwi Astuti, M.Cs.</p>
+              <div class="progress-info"><span>Progres Materi</span><strong>90%</strong></div>
+              <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: PROFILE / PROFIL -->
+      <div id="tab-profile" class="tab-content hidden">
+        <div class="card profile-card-header">
+          <div class="profile-avatar-lg"><i class="fa-solid fa-user"></i></div>
+          <h3 id="profile-user-name">Alpiyanto</h3>
+          <p style="font-size:0.8rem; color:var(--text-muted);">Mahasiswa Aktif Informatika</p>
+        </div>
+
+        <div class="card">
+          <div class="profile-item"><span>Program Studi</span><strong>S1 Informatika</strong></div>
+          <div class="profile-item"><span>NIM</span><strong>265410036</strong></div>
+          <div class="profile-item"><span>Fakultas</span><strong>Teknologi Informasi</strong></div>
+          <div class="profile-item"><span>Status Akun</span><strong style="color:var(--success);">Aktif (SSO Connected)</strong></div>
+        </div>
+
+        <button class="btn-primary-block" style="background-color:var(--danger);" onclick="handleLogout()">
+          <i class="fa-solid fa-right-from-bracket"></i> Keluar Sesi
+        </button>
+      </div>
+
     </main>
 
-    <!-- Bottom Nav -->
+    <!-- Bottom Navigation Bar -->
     <nav class="bottom-nav">
-      <a href="#" class="nav-item active"><i class="fa-solid fa-house"></i><span>Beranda</span></a>
-      <a href="#" class="nav-item"><i class="fa-solid fa-calendar-days"></i><span>Jadwal</span></a>
-      <a href="#" class="nav-item"><i class="fa-solid fa-list-check"></i><span>Tugas</span></a>
-      <a href="#" class="nav-item"><i class="fa-solid fa-user"></i><span>Profil</span></a>
+      <div class="nav-item active" onclick="switchTab('home', this)"><i class="fa-solid fa-house"></i><span>Beranda</span></div>
+      <div class="nav-item" onclick="switchTab('classes', this)"><i class="fa-solid fa-book-open"></i><span>Kelas</span></div>
+      <div class="nav-item" onclick="switchTab('profile', this)"><i class="fa-solid fa-user"></i><span>Profil</span></div>
     </nav>
   </div>
 
-  <script src="script.js"></script>
+  <!-- JavaScript Logics -->
+  <script>
+    // Handle Theme Toggle (Dark/Light Mode)
+    function toggleTheme() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    // Handle Login
+    function handleLogin(event) {
+      event.preventDefault();
+      const usernameInput = document.getElementById("username").value.trim();
+      let formattedName = usernameInput === "" ? "Alpiyanto" : usernameInput;
+
+      if (usernameInput.toLowerCase() === "alpi") {
+        formattedName = "Alpiyanto (Alpi)";
+      }
+
+      document.getElementById("hero-user-name").innerText = formattedName;
+      document.getElementById("profile-user-name").innerText = formattedName;
+
+      document.getElementById("login-page").classList.add("hidden");
+      document.getElementById("app-page").classList.remove("hidden");
+      window.scrollTo(0, 0);
+    }
+
+    function handleSSOLogin() {
+      document.getElementById("username").value = "Alpi (SSO)";
+      handleLogin(new Event('submit'));
+    }
+
+    function handleLogout() {
+      document.getElementById("app-page").classList.add("hidden");
+      document.getElementById("login-page").classList.remove("hidden");
+      document.getElementById("login-form").reset();
+    }
+
+    // Handle Tab Navigation (Single Page App)
+    function switchTab(tabName, el) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+      document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+
+      document.getElementById('tab-' + tabName).classList.remove('hidden');
+      el.classList.add('active');
+    }
+
+    // Handle Presensi
+    function submitPresensi() {
+      const passcode = document.getElementById("passcode").value;
+      if (passcode.trim() === "") {
+        alert("Silakan masukkan passcode presensi terlebih dahulu!");
+        return;
+      }
+      document.getElementById("attendance-box").style.display = "none";
+      document.getElementById("success-box").classList.remove("hidden");
+    }
+  </script>
 </body>
 </html>
