@@ -323,7 +323,7 @@
       <div id="tab-profile" class="tab-content hidden">
         <div class="card profile-card-header">
           <div class="profile-avatar-lg"><i class="fa-solid fa-user"></i></div>
-          <h3 id="profile-user-name">Alpiyanto</h3>
+          <h3 id="profile-user-name">Alpi ganteng</h3>
           <p style="font-size:0.8rem; color:var(--text-muted);">Mahasiswa Aktif Informatika</p>
         </div>
 
@@ -360,10 +360,10 @@
     function handleLogin(event) {
       event.preventDefault();
       const usernameInput = document.getElementById("username").value.trim();
-      let formattedName = usernameInput === "" ? "Alpiyanto" : usernameInput;
+      let formattedName = usernameInput === "" ? "Alpi ganteng" : usernameInput;
 
       if (usernameInput.toLowerCase() === "alpi") {
-        formattedName = "Alpiyanto (Alpi)";
+        formattedName = "Alpi ganteng (Alpi)";
       }
 
       document.getElementById("hero-user-name").innerText = formattedName;
