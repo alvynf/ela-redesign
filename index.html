@@ -9,91 +9,93 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
-    /* ==================== VARIABLE & THEMING ==================== */
+    /* ==================== ZENIUS COLOR PALETTE & THEMING ==================== */
     :root {
-      --primary: #2563eb;
-      --primary-hover: #1d4ed8;
-      --primary-light: #eff6ff;
-      --accent: #f59e0b;
-      --bg-color: #f8fafc;
+      --primary: #f59e0b; /* Zenius Yellow/Amber */
+      --primary-hover: #d97706;
+      --primary-light: #fffbeb;
+      --accent-black: #0f172a;
+      --bg-color: #fcfbf7; /* Soft Warm White */
       --card-bg: #ffffff;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
+      --text-main: #18181b;
+      --text-muted: #71717a;
       --success: #10b981;
       --danger: #ef4444;
-      --border: #e2e8f0;
+      --border: #e4e4e7;
       --radius-lg: 16px;
       --radius-md: 12px;
       --radius-sm: 8px;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
-      --shadow-lg: 0 10px 25px -5px rgba(37, 99, 235, 0.12);
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.03);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 25px -5px rgba(245, 158, 11, 0.15);
     }
 
     /* Dark Mode Theme */
     body.dark-mode {
-      --bg-color: #0f172a;
-      --card-bg: #1e293b;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --border: #334155;
-      --primary-light: #1e3a8a;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
-      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+      --bg-color: #09090b;
+      --card-bg: #18181b;
+      --text-main: #fafafa;
+      --text-muted: #a1a1aa;
+      --border: #27272a;
+      --primary-light: #271e05;
+      --shadow-sm: 0 2px 4px rgba(0,0,0,0.4);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.5);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.25s, color 0.25s, border-color 0.25s; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
     body { background-color: var(--bg-color); color: var(--text-main); min-height: 100vh; }
     .hidden { display: none !important; }
 
     /* ==================== LOGIN PAGE ==================== */
     .auth-wrapper { display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-    .auth-card { background: var(--card-bg); width: 100%; max-width: 380px; padding: 32px 24px; border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: var(--shadow-lg); position: relative; }
-    .brand-logo { width: 52px; height: 52px; background: var(--primary); color: white; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin: 0 auto 14px; box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25); }
+    .auth-card { background: var(--card-bg); width: 100%; max-width: 390px; padding: 32px 24px; border-radius: var(--radius-lg); border: 1px solid var(--border); box-shadow: var(--shadow-lg); position: relative; }
+    
+    .brand-logo { width: 56px; height: 56px; background: var(--primary); color: #000; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 14px; box-shadow: 0 6px 16px rgba(245, 158, 11, 0.3); }
     .auth-header { text-align: center; margin-bottom: 24px; }
-    .auth-header h2 { font-size: 1.35rem; font-weight: 800; }
+    .auth-header h2 { font-size: 1.4rem; font-weight: 800; }
     .auth-header p { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; }
 
     .form-group { margin-bottom: 16px; }
-    .form-group label { display: block; font-size: 0.78rem; font-weight: 700; margin-bottom: 6px; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; }
     .input-with-icon { position: relative; display: flex; align-items: center; }
     .input-with-icon i { position: absolute; left: 14px; color: var(--text-muted); font-size: 0.9rem; }
-    .input-with-icon input { width: 100%; padding: 11px 14px 11px 38px; border: 1.5px solid var(--border); border-radius: var(--radius-md); font-size: 0.88rem; outline: none; background: var(--card-bg); color: var(--text-main); }
+    .input-with-icon input { width: 100%; padding: 12px 14px 12px 38px; border: 1.5px solid var(--border); border-radius: var(--radius-md); font-size: 0.88rem; outline: none; background: var(--card-bg); color: var(--text-main); }
     .input-with-icon input:focus { border-color: var(--primary); }
 
-    .btn-primary-block { width: 100%; background-color: var(--primary); color: white; border: none; padding: 12px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.92rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2); }
-    .btn-primary-block:hover { background-color: var(--primary-hover); }
+    .btn-primary-block { width: 100%; background-color: var(--primary); color: #000; border: none; padding: 13px; border-radius: var(--radius-md); font-weight: 800; font-size: 0.95rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.25); }
+    .btn-primary-block:hover { background-color: var(--primary-hover); color: #fff; }
 
-    .auth-divider { display: flex; align-items: center; text-align: center; margin: 18px 0; color: var(--text-muted); font-size: 0.75rem; }
+    .auth-divider { display: flex; align-items: center; text-align: center; margin: 20px 0; color: var(--text-muted); font-size: 0.75rem; }
     .auth-divider::before, .auth-divider::after { content: ''; flex: 1; border-bottom: 1px solid var(--border); }
     .auth-divider span { padding: 0 10px; }
 
-    .btn-sso { width: 100%; background: var(--card-bg); border: 1.5px solid var(--border); padding: 10px; border-radius: var(--radius-md); font-weight: 600; font-size: 0.85rem; color: var(--text-main); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .btn-sso { width: 100%; background: var(--card-bg); border: 1.5px solid var(--border); padding: 11px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; color: var(--text-main); cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; }
     .google-svg { width: 18px; height: 18px; }
 
-    /* Theme Toggle Button (Header & Auth) */
-    .btn-theme-toggle { background: var(--primary-light); border: 1px solid var(--border); color: var(--text-main); padding: 6px 10px; border-radius: 20px; font-size: 0.8rem; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 600; }
+    .btn-theme-toggle { background: var(--primary-light); border: 1px solid var(--border); color: var(--text-main); padding: 6px 12px; border-radius: 20px; font-size: 0.78rem; cursor: pointer; display: flex; align-items: center; gap: 6px; font-weight: 700; }
 
     /* ==================== MAIN DASHBOARD ==================== */
     .app-wrapper { padding-bottom: 85px; }
-    .top-bar { background-color: var(--card-bg); display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
+    .top-bar { background-color: var(--card-bg); display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 100; }
     .brand { display: flex; align-items: center; gap: 10px; }
-    .brand-icon { width: 32px; height: 32px; background: var(--primary); color: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
-    .brand-text { font-weight: 800; font-size: 1.05rem; }
+    .brand-icon { width: 34px; height: 34px; background: var(--primary); color: #000; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .brand-text { font-weight: 800; font-size: 1.1rem; }
     .brand-text span { color: var(--primary); }
 
     .user-profile { display: flex; align-items: center; gap: 10px; }
-    .user-info { text-align: right; display: flex; flex-direction: column; }
-    .user-name { font-size: 0.82rem; font-weight: 700; }
-    .user-role { font-size: 0.68rem; color: var(--text-muted); }
-    .avatar { width: 34px; height: 34px; border-radius: 50%; background-color: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; border: 1px solid var(--border); }
+    .avatar { width: 36px; height: 36px; border-radius: 50%; background-color: var(--primary); color: #000; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
 
     .container { max-width: 480px; margin: 0 auto; padding: 16px; }
 
-    /* Hero Banner */
-    .hero-banner { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: white; padding: 18px 20px; border-radius: var(--radius-lg); margin-bottom: 18px; box-shadow: 0 6px 18px rgba(37, 99, 235, 0.2); }
-    .hero-text h2 { font-size: 1.2rem; font-weight: 800; }
-    .hero-text p { font-size: 0.78rem; opacity: 0.9; margin-top: 4px; line-height: 1.4; }
+    /* Hero Banner Zenius Style */
+    .hero-banner { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: #000; padding: 20px; border-radius: var(--radius-lg); margin-bottom: 18px; box-shadow: 0 6px 18px rgba(245, 158, 11, 0.2); }
+    .hero-text h2 { font-size: 1.25rem; font-weight: 800; }
+    .hero-text p { font-size: 0.8rem; font-weight: 600; opacity: 0.9; margin-top: 4px; line-height: 1.4; }
+
+    /* Quick Action Buttons */
+    .quick-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+    .qa-btn { background: var(--card-bg); border: 1px solid var(--border); padding: 12px 8px; border-radius: var(--radius-md); text-align: center; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 700; color: var(--text-main); box-shadow: var(--shadow-sm); }
+    .qa-btn i { font-size: 1.2rem; color: var(--primary); }
 
     /* Cards */
     .card { background-color: var(--card-bg); border-radius: var(--radius-lg); padding: 16px; border: 1px solid var(--border); box-shadow: var(--shadow-sm); margin-bottom: 14px; }
@@ -102,12 +104,12 @@
     .badge-live i { font-size: 0.4rem; animation: pulse 1.5s infinite; }
     @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.3; } 100% { opacity: 1; } }
 
-    .course-info h3 { font-size: 1.05rem; font-weight: 700; margin: 8px 0 2px; }
+    .course-info h3 { font-size: 1.05rem; font-weight: 800; margin: 8px 0 2px; }
     .course-info p { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 12px; }
 
     .input-group { display: flex; gap: 8px; }
     .input-group input { flex: 1; padding: 10px 12px; border: 1.5px solid var(--border); border-radius: var(--radius-md); outline: none; font-size: 0.85rem; font-weight: 600; background: var(--card-bg); color: var(--text-main); }
-    .input-group button { background-color: var(--primary); color: white; border: none; padding: 10px 16px; border-radius: var(--radius-md); font-weight: 700; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+    .input-group button { background-color: var(--primary); color: #000; border: none; padding: 10px 16px; border-radius: var(--radius-md); font-weight: 800; font-size: 0.85rem; cursor: pointer; display: flex; align-items: center; gap: 6px; }
 
     .success-box { background-color: #ecfdf5; border: 1px solid #a7f3d0; padding: 12px; border-radius: var(--radius-md); display: flex; align-items: center; gap: 10px; }
     .check-icon { font-size: 1.5rem; color: var(--success); }
@@ -115,40 +117,62 @@
     .success-box p { font-size: 0.75rem; color: #047857; margin-top: 2px; }
 
     .section-header { display: flex; justify-content: space-between; align-items: center; margin: 18px 0 10px; }
-    .section-header h4 { font-size: 0.9rem; font-weight: 800; display: flex; align-items: center; gap: 6px; }
-    .section-header h4 i { color: var(--accent); }
+    .section-header h4 { font-size: 0.95rem; font-weight: 800; display: flex; align-items: center; gap: 6px; }
 
+    /* Task Card */
     .task-card { display: flex; align-items: center; gap: 12px; }
-    .task-icon { width: 40px; height: 40px; background-color: #fff7ed; color: #ea580c; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+    .task-icon { width: 40px; height: 40px; background-color: var(--primary-light); color: var(--primary); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
     .task-details { flex: 1; }
     .task-details h5 { font-size: 0.88rem; font-weight: 700; }
     .task-details p { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
-    .deadline.urgent { font-size: 0.7rem; color: var(--danger); font-weight: 700; display: inline-block; margin-top: 3px; }
+    .deadline.urgent { font-size: 0.7rem; color: var(--danger); font-weight: 800; display: inline-block; margin-top: 3px; }
 
-    /* Course Cards */
-    .course-grid { display: flex; flex-direction: column; gap: 10px; }
-    .course-item { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
-    .course-header-tag { height: 5px; width: 100%; }
-    .tag-blue { background-color: #3b82f6; }
-    .tag-purple { background-color: #a855f7; }
-    .tag-green { background-color: #10b981; }
-    .course-body { padding: 12px 16px; }
-    .course-body .code { font-size: 0.62rem; font-weight: 800; color: var(--text-muted); }
-    .course-body h5 { font-size: 0.9rem; font-weight: 700; margin: 3px 0 2px; }
-    .course-body .lecturer { font-size: 0.72rem; color: var(--text-muted); }
-    .progress-info { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-muted); margin-top: 10px; }
+    /* ==================== TAB KELAS & ACCORDION ==================== */
+    .semester-accordion { margin-bottom: 12px; }
+    .accordion-header { background: var(--card-bg); border: 1px solid var(--border); padding: 14px 16px; border-radius: var(--radius-md); display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-weight: 800; font-size: 0.9rem; }
+    .accordion-header i { transition: transform 0.3s; color: var(--primary); }
+    .accordion-header.active i { transform: rotate(180deg); }
+    
+    .accordion-content { margin-top: 10px; display: flex; flex-direction: column; gap: 10px; }
+    
+    .course-item { padding: 0; overflow: hidden; display: flex; flex-direction: column; cursor: pointer; transition: transform 0.2s; }
+    .course-item:hover { transform: translateY(-2px); }
+    .course-header-tag { height: 6px; width: 100%; background: var(--primary); }
+
+    .course-body { padding: 14px 16px; }
+    .course-body .code { font-size: 0.65rem; font-weight: 800; color: var(--text-muted); letter-spacing: 0.5px; }
+    .course-body h5 { font-size: 0.95rem; font-weight: 800; margin: 3px 0 2px; }
+    .course-body .lecturer { font-size: 0.75rem; color: var(--text-muted); }
+    .progress-info { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-muted); margin-top: 10px; font-weight: 600; }
     .progress-bar { height: 5px; background-color: var(--border); border-radius: 3px; margin-top: 5px; overflow: hidden; }
     .progress { height: 100%; background-color: var(--primary); }
 
-    /* Bottom Navigation Bar */
+    .empty-semester-box { background: var(--card-bg); border: 1px dashed var(--border); padding: 20px; border-radius: var(--radius-md); text-align: center; color: var(--text-muted); font-size: 0.8rem; }
+
+    /* ==================== MODAL DETAIL KELAS ==================== */
+    .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: flex-end; z-index: 200; backdrop-filter: blur(2px); }
+    .modal-card { background: var(--card-bg); width: 100%; max-width: 480px; max-height: 85vh; border-radius: 20px 20px 0 0; padding: 20px; overflow-y: auto; box-shadow: var(--shadow-lg); animation: slideUp 0.3s ease-out; }
+    @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+
+    .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 14px; }
+    .modal-header h3 { font-size: 1.05rem; font-weight: 800; }
+    .btn-close { background: none; border: none; font-size: 1.2rem; color: var(--text-muted); cursor: pointer; }
+
+    .modal-tabs { display: flex; gap: 8px; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 14px; }
+    .m-tab { font-size: 0.78rem; font-weight: 700; padding: 6px 12px; border-radius: 14px; cursor: pointer; color: var(--text-muted); }
+    .m-tab.active { background: var(--primary); color: #000; }
+
+    .m-item { border: 1px solid var(--border); padding: 12px; border-radius: var(--radius-sm); margin-bottom: 10px; font-size: 0.8rem; }
+    .m-item h6 { font-size: 0.85rem; font-weight: 800; margin-bottom: 4px; }
+
+    /* ==================== BOTTOM NAV & PROFILE ==================== */
     .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background-color: var(--card-bg); display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid var(--border); box-shadow: 0 -4px 12px rgba(0,0,0,0.03); z-index: 99; }
     .nav-item { text-decoration: none; color: var(--text-muted); display: flex; flex-direction: column; align-items: center; font-size: 0.68rem; gap: 3px; cursor: pointer; }
     .nav-item i { font-size: 1.15rem; }
-    .nav-item.active { color: var(--primary); font-weight: 700; }
+    .nav-item.active { color: var(--primary); font-weight: 800; }
 
-    /* Profile Page Specifics */
     .profile-card-header { text-align: center; padding: 20px 10px; }
-    .profile-avatar-lg { width: 72px; height: 72px; border-radius: 50%; background: var(--primary-light); color: var(--primary); font-size: 2rem; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; border: 2px solid var(--primary); }
+    .profile-avatar-lg { width: 72px; height: 72px; border-radius: 50%; background: var(--primary); color: #000; font-size: 2rem; font-weight: 800; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3); }
     .profile-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
     .profile-item span { color: var(--text-muted); }
     .profile-item strong { color: var(--text-main); }
@@ -218,8 +242,8 @@
       </div>
       <div class="user-profile">
         <button class="btn-theme-toggle" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i> Mode</button>
-        <div class="avatar"><i class="fa-solid fa-user"></i></div>
-        <button class="btn-logout" title="Keluar" onclick="handleLogout()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:1.1rem;"><i class="fa-solid fa-right-from-bracket"></i></button>
+        <div id="user-initial-avatar" class="avatar">A</div>
+        <button onclick="handleLogout()" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:1.1rem;"><i class="fa-solid fa-right-from-bracket"></i></button>
       </div>
     </header>
 
@@ -228,14 +252,32 @@
 
       <!-- TAB 1: HOME / BERANDA -->
       <div id="tab-home" class="tab-content">
+        
+        <!-- Hero Banner -->
         <section class="hero-banner">
           <div class="hero-text">
             <h2>Semangat Belajar, <span id="hero-user-name">Alpi</span>! 🚀</h2>
-            <p>Kamu punya 1 jadwal presensi aktif hari ini.</p>
+            <p>Kamu punya 1 jadwal presensi aktif & 1 tugas mendekati deadline hari ini.</p>
           </div>
         </section>
 
-        <!-- One-Click Attendance -->
+        <!-- Quick Actions (Fitur Tambahan Pembantu) -->
+        <div class="quick-actions">
+          <div class="qa-btn" onclick="switchTab('classes', document.querySelectorAll('.nav-item')[1])">
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Jadwal Hari Ini</span>
+          </div>
+          <div class="qa-btn">
+            <i class="fa-solid fa-file-signature"></i>
+            <span>Tugas Aktif</span>
+          </div>
+          <div class="qa-btn">
+            <i class="fa-solid fa-comments"></i>
+            <span>Diskusi Kelas</span>
+          </div>
+        </div>
+
+        <!-- One-Click Attendance (Priority) -->
         <section class="card attendance-card">
           <div class="card-header">
             <span class="badge badge-live"><i class="fa-solid fa-circle"></i> KULIAH AKTIF SEKARANG</span>
@@ -257,14 +299,27 @@
             <i class="fa-solid fa-circle-check check-icon"></i>
             <div>
               <strong>Presensi Berhasil Terekam!</strong>
-              <p>Status: <span style="color:var(--success); font-weight:800;">Hadir</span> (07:50 WIB)</p>
+              <p>Status: <span style="color:var(--success); font-weight:800;">Hadir</span> (Dicatat pukul 07:50 WIB)</p>
             </div>
           </div>
         </section>
 
-        <!-- Tasks -->
+        <!-- Tracker Kehadiran Ringkas -->
+        <div class="card" style="display:flex; justify-content:space-around; text-align:center; padding:12px;">
+          <div>
+            <span style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">Kehadiran Semester</span>
+            <h4 style="font-size:1.1rem; color:var(--success); font-weight:800; margin-top:2px;">95% (Hadir)</h4>
+          </div>
+          <div style="border-left:1px solid var(--border);"></div>
+          <div>
+            <span style="font-size:0.7rem; color:var(--text-muted); font-weight:700;">Tugas Selesai</span>
+            <h4 style="font-size:1.1rem; color:var(--primary); font-weight:800; margin-top:2px;">12 / 14</h4>
+          </div>
+        </div>
+
+        <!-- Tasks Section -->
         <section class="section-header">
-          <h4><i class="fa-solid fa-fire"></i> Tugas Terdekat</h4>
+          <h4><i class="fa-solid fa-fire" style="color:var(--primary);"></i> Tugas Terdekat</h4>
         </section>
         
         <div class="card task-card">
@@ -272,69 +327,96 @@
           <div class="task-details">
             <h5>Laporan Praktikum Algo</h5>
             <p>Praktikum Algoritma dan Pemrograman</p>
-            <span class="deadline urgent"><i class="fa-regular fa-clock"></i> Sisa 2 Jam</span>
+            <span class="deadline urgent"><i class="fa-regular fa-clock"></i> Sisa 2 Jam (23:59 WIB)</span>
           </div>
         </div>
       </div>
 
-      <!-- TAB 2: CLASSES / KELAS SAYA -->
+      <!-- TAB 2: CLASSES / KELAS SAYA (BREAKDOWN SEMESTER) -->
       <div id="tab-classes" class="tab-content hidden">
         <section class="section-header">
-          <h4><i class="fa-solid fa-book-bookmark"></i> Kelas Semester Ini</h4>
+          <h4><i class="fa-solid fa-book-bookmark" style="color:var(--primary);"></i> Daftar Kelas Saya</h4>
         </section>
 
-        <div class="course-grid">
-          <div class="card course-item">
-            <div class="course-header-tag tag-blue"></div>
-            <div class="course-body">
-              <span class="code">SIF25101T</span>
-              <h5>Jaringan Komputer IF-1</h5>
-              <p class="lecturer"><i class="fa-regular fa-user"></i> Wagito, S.Kom., M.Cs.</p>
-              <div class="progress-info"><span>Progres Materi</span><strong>85%</strong></div>
-              <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
-            </div>
+        <!-- Semester 1 (Aktif Accordion) -->
+        <div class="semester-accordion">
+          <div class="accordion-header active" onclick="toggleAccordion('sem1', this)">
+            <span><i class="fa-solid fa-folder-open"></i> Semester 1 (Ganjil 2026/2027)</span>
+            <i class="fa-solid fa-chevron-down"></i>
           </div>
-
-          <div class="card course-item">
-            <div class="course-header-tag tag-purple"></div>
-            <div class="course-body">
-              <span class="code">INF25102T</span>
-              <h5>Pengantar Teknologi Informasi</h5>
-              <p class="lecturer"><i class="fa-regular fa-user"></i> Edi Iskandar, M.Kom.</p>
-              <div class="progress-info"><span>Progres Materi</span><strong>70%</strong></div>
-              <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+          <div id="sem1" class="accordion-content">
+            
+            <!-- Course 1 -->
+            <div class="card course-item" onclick="openCourseModal('Jaringan Komputer IF-1', 'Wagito, S.Kom., M.Cs.', 'SIF25101T')">
+              <div class="course-header-tag"></div>
+              <div class="course-body">
+                <span class="code">SIF25101T</span>
+                <h5>Jaringan Komputer IF-1</h5>
+                <p class="lecturer"><i class="fa-regular fa-user"></i> Wagito, S.Kom., M.Cs.</p>
+                <div class="progress-info"><span>Progres Materi</span><strong>85%</strong></div>
+                <div class="progress-bar"><div class="progress" style="width: 85%;"></div></div>
+              </div>
             </div>
-          </div>
 
-          <div class="card course-item">
-            <div class="course-header-tag tag-green"></div>
-            <div class="course-body">
-              <span class="code">INF25103T</span>
-              <h5>Algoritma & Pemrograman</h5>
-              <p class="lecturer"><i class="fa-regular fa-user"></i> Femi Dwi Astuti, M.Cs.</p>
-              <div class="progress-info"><span>Progres Materi</span><strong>90%</strong></div>
-              <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+            <!-- Course 2 -->
+            <div class="card course-item" onclick="openCourseModal('Pengantar Teknologi Informasi', 'Edi Iskandar, M.Kom.', 'INF25102T')">
+              <div class="course-header-tag"></div>
+              <div class="course-body">
+                <span class="code">INF25102T</span>
+                <h5>Pengantar Teknologi Informasi</h5>
+                <p class="lecturer"><i class="fa-regular fa-user"></i> Edi Iskandar, M.Kom.</p>
+                <div class="progress-info"><span>Progres Materi</span><strong>70%</strong></div>
+                <div class="progress-bar"><div class="progress" style="width: 70%;"></div></div>
+              </div>
+            </div>
+
+            <!-- Course 3 -->
+            <div class="card course-item" onclick="openCourseModal('Algoritma & Pemrograman', 'Femi Dwi Astuti, M.Cs.', 'INF25103T')">
+              <div class="course-header-tag"></div>
+              <div class="course-body">
+                <span class="code">INF25103T</span>
+                <h5>Algoritma & Pemrograman</h5>
+                <p class="lecturer"><i class="fa-regular fa-user"></i> Femi Dwi Astuti, M.Cs.</p>
+                <div class="progress-info"><span>Progres Materi</span><strong>90%</strong></div>
+                <div class="progress-bar"><div class="progress" style="width: 90%;"></div></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Semester 2 (Empty Accordion) -->
+        <div class="semester-accordion">
+          <div class="accordion-header" onclick="toggleAccordion('sem2', this)">
+            <span><i class="fa-solid fa-folder"></i> Semester 2 (Genap 2027)</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div id="sem2" class="accordion-content hidden">
+            <div class="empty-semester-box">
+              <i class="fa-solid fa-lock" style="font-size:1.5rem; margin-bottom:6px;"></i>
+              <p>Belum ada kelas aktif di semester ini.<br>Periode KRS Semester 2 belum dibuka.</p>
             </div>
           </div>
         </div>
+
       </div>
 
       <!-- TAB 3: PROFILE / PROFIL -->
       <div id="tab-profile" class="tab-content hidden">
         <div class="card profile-card-header">
-          <div class="profile-avatar-lg"><i class="fa-solid fa-user"></i></div>
-          <h3 id="profile-user-name">Alpi ganteng</h3>
-          <p style="font-size:0.8rem; color:var(--text-muted);">Mahasiswa Aktif Informatika</p>
+          <div id="profile-avatar-large" class="profile-avatar-lg">A</div>
+          <h3 id="profile-user-name">Alpiyanto</h3>
+          <p style="font-size:0.8rem; color:var(--text-muted); font-weight:600;">Mahasiswa Aktif Informatika</p>
         </div>
 
         <div class="card">
           <div class="profile-item"><span>Program Studi</span><strong>S1 Informatika</strong></div>
-          <div class="profile-item"><span>NIM</span><strong>265410036</strong></div>
+          <div class="profile-item"><span>NIM</span><strong id="profile-nim-display">265410036</strong></div>
           <div class="profile-item"><span>Fakultas</span><strong>Teknologi Informasi</strong></div>
-          <div class="profile-item"><span>Status Akun</span><strong style="color:var(--success);">Aktif (SSO Connected)</strong></div>
+          <div class="profile-item"><span>Status Otentikasi</span><strong style="color:var(--success);">Connected (Google Student SSO)</strong></div>
         </div>
 
-        <button class="btn-primary-block" style="background-color:var(--danger);" onclick="handleLogout()">
+        <button class="btn-primary-block" style="background-color:var(--danger); color:white;" onclick="handleLogout()">
           <i class="fa-solid fa-right-from-bracket"></i> Keluar Sesi
         </button>
       </div>
@@ -349,25 +431,88 @@
     </nav>
   </div>
 
+  <!-- ==================== MODAL DETAIL MATA KULIAH ==================== -->
+  <div id="course-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <span id="m-course-code" style="font-size:0.65rem; font-weight:800; color:var(--text-muted);">SIF25101T</span>
+          <h3 id="m-course-title">Jaringan Komputer IF-1</h3>
+          <p id="m-course-lecturer" style="font-size:0.75rem; color:var(--text-muted);">Wagito, S.Kom., M.Cs.</p>
+        </div>
+        <button class="btn-close" onclick="closeCourseModal()"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Modal Tabs -->
+      <div class="modal-tabs">
+        <div class="m-tab active" onclick="switchModalTab('materi', this)">Materi & Modul</div>
+        <div class="m-tab" onclick="switchModalTab('presensi', this)">Rekap Presensi</div>
+      </div>
+
+      <!-- Content Tab 1: Materi -->
+      <div id="m-tab-materi" class="m-content">
+        <div class="m-item">
+          <h6>Minggu ke-1: Pengenalan Jaringan Komputer</h6>
+          <p style="color:var(--text-muted); font-size:0.75rem;">Materi perkuliahan & Pengenalan Topologi LAN.</p>
+          <a href="#" style="color:var(--primary); font-weight:700; font-size:0.75rem; text-decoration:none; display:inline-block; margin-top:4px;"><i class="fa-solid fa-download"></i> Unduh Modul PDF</a>
+        </div>
+        <div class="m-item">
+          <h6>Minggu ke-2: Model Komunikasi Data & OSI Layer</h6>
+          <p style="color:var(--text-muted); font-size:0.75rem;">Pembahasan 7 Lapisan OSI Layer & TCP/IP.</p>
+          <a href="#" style="color:var(--primary); font-weight:700; font-size:0.75rem; text-decoration:none; display:inline-block; margin-top:4px;"><i class="fa-solid fa-download"></i> Unduh Modul PDF</a>
+        </div>
+      </div>
+
+      <!-- Content Tab 2: Rekap Presensi -->
+      <div id="m-tab-presensi" class="m-content hidden">
+        <div class="m-item" style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h6>Pertemuan 1 (02 Nov 2026)</h6>
+            <p style="color:var(--text-muted); font-size:0.72rem;">Subnetting IPv4</p>
+          </div>
+          <span style="color:var(--success); font-weight:800; font-size:0.8rem;">Hadir (2/2)</span>
+        </div>
+        <div class="m-item" style="display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <h6>Pertemuan 2 (09 Nov 2026)</h6>
+            <p style="color:var(--text-muted); font-size:0.72rem;">Regular Session</p>
+          </div>
+          <span style="color:var(--text-muted); font-weight:700; font-size:0.8rem;">Mendatang</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- JavaScript Logics -->
   <script>
-    // Handle Theme Toggle (Dark/Light Mode)
+    // Toggle Theme (Dark/Light Mode)
     function toggleTheme() {
       document.body.classList.toggle("dark-mode");
     }
 
-    // Handle Login
+    // Login Function (Simulasi Input Nama & NIM)
     function handleLogin(event) {
       event.preventDefault();
       const usernameInput = document.getElementById("username").value.trim();
-      let formattedName = usernameInput === "" ? "Alpi ganteng" : usernameInput;
+      let formattedName = usernameInput === "" ? "Alpiyanto" : usernameInput;
 
-      if (usernameInput.toLowerCase() === "alpi") {
-        formattedName = "Alpi ganteng (Alpi)";
+      // Jika mengetik 'alpi' / '265410036'
+      if (usernameInput.toLowerCase() === "alpi" || usernameInput === "265410036") {
+        formattedName = "Alviyanto Nur Fajri";
       }
 
+      const firstChar = formattedName.charAt(0).toUpperCase();
+
+      // Pasang Nama & Inisial Avatar Dinamis
       document.getElementById("hero-user-name").innerText = formattedName;
       document.getElementById("profile-user-name").innerText = formattedName;
+      document.getElementById("user-initial-avatar").innerText = firstChar;
+      document.getElementById("profile-avatar-large").innerText = firstChar;
+      
+      if(usernameInput.match(/^\d+$/)) {
+        document.getElementById("profile-nim-display").innerText = usernameInput;
+      }
 
       document.getElementById("login-page").classList.add("hidden");
       document.getElementById("app-page").classList.remove("hidden");
@@ -375,7 +520,7 @@
     }
 
     function handleSSOLogin() {
-      document.getElementById("username").value = "Alpi (SSO)";
+      document.getElementById("username").value = "265410036";
       handleLogin(new Event('submit'));
     }
 
@@ -385,7 +530,7 @@
       document.getElementById("login-form").reset();
     }
 
-    // Handle Tab Navigation (Single Page App)
+    // Tab Navigation Main App
     function switchTab(tabName, el) {
       document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
       document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
@@ -394,7 +539,34 @@
       el.classList.add('active');
     }
 
-    // Handle Presensi
+    // Accordion Breakdown Semester
+    function toggleAccordion(id, headerEl) {
+      const content = document.getElementById(id);
+      content.classList.toggle('hidden');
+      headerEl.classList.toggle('active');
+    }
+
+    // Modal Detail Kelas
+    function openCourseModal(title, lecturer, code) {
+      document.getElementById('m-course-title').innerText = title;
+      document.getElementById('m-course-lecturer').innerText = lecturer;
+      document.getElementById('m-course-code').innerText = code;
+      document.getElementById('course-modal').classList.remove('hidden');
+    }
+
+    function closeCourseModal() {
+      document.getElementById('course-modal').classList.add('hidden');
+    }
+
+    function switchModalTab(tab, el) {
+      document.querySelectorAll('.m-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('.m-tab').forEach(t => t.classList.remove('active'));
+
+      document.getElementById('m-tab-' + tab).classList.remove('hidden');
+      el.classList.add('active');
+    }
+
+    // Presensi Simpulan
     function submitPresensi() {
       const passcode = document.getElementById("passcode").value;
       if (passcode.trim() === "") {
